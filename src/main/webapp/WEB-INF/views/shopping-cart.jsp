@@ -6,39 +6,24 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Assignment</title>
-<!-- Bootstrap CSS -->
-<!-- Bootstrap Icons -->
+<title>Trang Giỏ Hàng</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-
-<!-- Bootstrap 5 CSS (Chỉ giữ phiên bản mới nhất) -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
-<!-- FontAwesome -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
-<!-- Bootstrap 5 JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-<!-- Bootstrap 5 và Popper.js -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<!-- Thông báo -->
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.all.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.2.0/sweetalert2.all.min.js"></script>
 </head>
 <style>
 .header a {
-    text-decoration: none; /* Xóa gạch chân */
+    text-decoration: none;
 }
-
 .header a:hover {
-    text-decoration: none; /* Giữ nguyên khi hover */
+    text-decoration: none;
 }
-
-     
 </style>
 <body>
-	<!-- Page Preloder -->
 	<div id="preloder">
 		<div class="loader"></div>
 	</div>
@@ -46,9 +31,7 @@
 	<!-- Header Section Begin -->
 	<header class="header bg-dark py-3 shadow-sm text-white" style="background: linear-gradient(135deg, #696969, #000000); color: #535353;">
     <div class="container">
-        <!-- Dòng đầu tiên (Đăng nhập, ngôn ngữ) -->
         <div class="d-flex justify-content-between align-items-center">
-            <!-- Bên trái -->
             <div class="d-flex align-items-center">
                 <a href="#" class="text-white me-3" data-translate="seller-channel">Kênh Người Bán</a>
                 <span class="divider text-white">|</span>
@@ -58,13 +41,9 @@
                 <a href="#" class="text-white me-2"><i class="bi bi-facebook"></i></a>
                 <a href="#" class="text-white"><i class="bi bi-instagram"></i></a>
             </div>
-
-            <!-- Bên phải -->
             <div class="d-flex align-items-center">
                 <a href="#" class="text-white me-3"><i class="bi bi-bell"></i> <span data-translate="notification">Thông báo</span></a>
                 <a href="#" class="text-white me-3"><i class="bi bi-question-circle"></i> <span data-translate="support">Hỗ trợ</span></a>
-
-                <!-- Chọn ngôn ngữ -->
                 <div class="dropdown">
                     <button id="language-btn" class="btn btn-link text-white dropdown-toggle" type="button" data-bs-toggle="dropdown" style="text-decoration: none;">
                         <i class="bi bi-globe"></i> <span id="selected-lang">Tiếng Việt</span>
@@ -74,8 +53,6 @@
                         <li><a class="dropdown-item language-option" data-lang="en" href="#">English</a></li>
                     </ul>
                 </div>
-
-                <!-- Tài khoản -->
                <div class="dropdown">
     <c:choose>
         <c:when test="${not empty user}">
@@ -86,6 +63,7 @@
                 <c:if test="${user.admin}">
                     <li><a class="dropdown-item" href="/admin/product"><i class="bi bi-speedometer2"></i> <span data-translate="admin">Quản trị</span></a></li>
                 </c:if>
+                <li><a class="dropdown-item" href="/account/lich-su-don-hang"><i class="bi bi-receipt"></i> Lịch sử mua hàng</a></li>
                 <li><a class="dropdown-item" href="/profile-account"><i class="bi bi-arrow-repeat"></i> <span data-translate="change-password">Đổi mật khẩu</span></a></li>
                 <li><a class="dropdown-item" href="/account/logout"><i class="bi bi-box-arrow-right"></i> <span data-translate="logout">Đăng xuất</span></a></li>
             </ul>
@@ -97,16 +75,11 @@
         </c:otherwise>
     </c:choose>
 </div>
-
             </div>
         </div>
 
-        <!-- Dòng thứ hai (Logo, menu, giỏ hàng) -->
         <div class="d-flex align-items-center justify-content-between">
-            <!-- Logo bên trái -->
             <a class="navbar-brand fw-bold" href="#" style="font-size:40px;">AZ</a>
-
-            <!-- Menu điều hướng ở giữa -->
           <nav class="navbar navbar-expand-lg navbar-light">
                 <ul class="navbar-nav d-flex flex-row">
                     <li class="nav-item"><a class="nav-link me-4 fw-bold text-white" href="/"> <i class="bi bi-house-door fw-bold"></i> <span data-translate="home">Trang chủ</span></a></li>
@@ -115,8 +88,6 @@
                     <li class="nav-item"><a class="nav-link me-4 fw-bold text-white" href="/GioiThieu"> <i class="bi bi-info-circle me-2"></i> <span data-translate="about">Giới thiệu</span></a></li>
                 </ul>
             </nav>
-
-            <!-- Giỏ hàng bên phải -->
             <a href="#" class="position-relative nav-link"> 
                 <i class="bi bi-cart3 fs-5"></i> 
                 <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
@@ -161,14 +132,12 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 </script>
-
 	<!-- Header Section End -->
 
 	<!-- Shopping Cart Section Begin -->
 	<section class="shopping-cart spad mt-5 mb-5">
     <div class="container">
         <div class="row">
-            <!-- Cột trái: Bảng sản phẩm -->
             <div class="col-lg-7">
                 <div class="card shadow-sm table-light p-1">
                     <table class="table table-hover align-middle text-center ">
@@ -213,7 +182,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 </div>
             </div>
 
-            <!-- Cột phải: Tổng tiền, Mã giảm giá, Thanh toán -->
             <div class="col-lg-5">
     <div class="card p-4 shadow-sm" style="background-color: #FFFFE0;">
 
@@ -222,13 +190,10 @@ document.addEventListener("DOMContentLoaded", function () {
             <span class="fw-bold"><fmt:formatNumber value="${totalCart}" pattern="#,###" /> &#8363;</span>
         </div>
 
-        <!-- Phí vận chuyển -->
         <div class="d-flex justify-content-between align-items-center mb-3">
             <h6 class="me-3"><i class="fas fa-truck text-warning"></i> Phí vận chuyển:</h6>
             <span id="shippingFee" class="fw-bold text-primary">Miễn phí</span>
         </div>
-
-        
 
         <div class="mb-3">
             <h6><i class="fas fa-ticket-alt text-primary"></i> Nhập mã giảm giá</h6>
@@ -243,7 +208,7 @@ document.addEventListener("DOMContentLoaded", function () {
         </select>
 
         <h6 class="mb-3"><i class="fas fa-map-marker-alt text-danger"></i> Địa chỉ giao hàng</h6>
-       <form action="${totalCart > 0 ? '/shop/order' : '/shop'}" method="${totalCart > 0 ? 'post' : 'get'}">
+       <form id="orderForm" action="${totalCart > 0 ? '/shop/order' : '/shop'}" method="${totalCart > 0 ? 'post' : 'get'}">
     <div class="row g-2 mb-3">
         <div class="col-md-6">
             <select class="form-select" name="province" id="provinceSelect" required>
@@ -277,7 +242,6 @@ document.addEventListener("DOMContentLoaded", function () {
         </div>
     </div>
 
-    <!-- Tổng tiền sau khi cộng phí vận chuyển -->
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h5 class="me-3"><strong>Tổng thanh toán:</strong></h5>
         <h5>
@@ -287,8 +251,7 @@ document.addEventListener("DOMContentLoaded", function () {
         </h5>
     </div>
 
-    <!-- Nút đặt hàng -->
-    <button type="submit" class="btn btn-success w-100">
+    <button type="button" id="orderSubmitBtn" class="btn btn-success w-100">
         <i class="fas fa-wallet"></i> Đặt hàng
     </button>
 </form>
@@ -304,9 +267,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const provinceSelect = document.getElementById("provinceSelect");
     const shippingFeeElement = document.getElementById("shippingFee");
     const totalWithShippingElement = document.getElementById("totalWithShipping");
-    const totalCart = ${totalCart}; // Lấy giá trị tổng giỏ hàng từ server
+    var totalCart = ${totalCart};
 
-    // Bảng phí vận chuyển
     const shippingFees = {
         hanoi: 20000,
         hochiminh: 25000,
@@ -316,22 +278,33 @@ document.addEventListener("DOMContentLoaded", function () {
     provinceSelect.addEventListener("change", function () {
         const selectedProvince = provinceSelect.value;
         const shippingFee = shippingFees[selectedProvince] || 0;
-        
+
         if (shippingFee > 0) {
             shippingFeeElement.textContent = shippingFee.toLocaleString("vi-VN") + " đ";
         } else {
             shippingFeeElement.textContent = "Miễn phí";
         }
 
-        // Tính tổng thanh toán
         const totalWithShipping = totalCart + shippingFee;
         totalWithShippingElement.textContent = totalWithShipping.toLocaleString("vi-VN") + " đ";
+    });
+
+    // MỚI: chặn đặt hàng nếu chưa đăng nhập, hiện modal xác nhận
+    document.getElementById("orderSubmitBtn").addEventListener("click", function () {
+        const isLoggedIn = ${not empty user};
+
+        if (!isLoggedIn) {
+            const modal = new bootstrap.Modal(document.getElementById('loginRequiredModal'));
+            modal.show();
+        } else {
+            document.getElementById("orderForm").submit();
+        }
     });
 });
 </script>
 	<!-- Shopping Cart Section End -->
 
- <!-- TEXT CONTENT -->
+	<!-- TEXT CONTENT -->
 	<section>
 		<div class="">
 			<div class="row"
@@ -397,15 +370,12 @@ document.addEventListener("DOMContentLoaded", function () {
 		</div>
 	</section>
 
-
 	<!-- Footer Section Begin -->
-
 	<footer
 		class="footer text-center text-md-start"
 		style="background: linear-gradient(135deg, #D6D6D6, #8C8C8C); color: #535353; padding: 50px 0px;">
 		<div class="container">
 			<div class="row">
-				<!-- Logo + Social Icons -->
 				<div class="col-md-3">
 					<div class="footer-logo"
 						style="font-weight: bold; font-size: 2.25rem;">AZ</div>
@@ -414,14 +384,13 @@ document.addEventListener("DOMContentLoaded", function () {
 						<a href="#"><i style="color: gray;" class="fa-brands fa-vimeo"></i></a>
 						<a href="#"><i style="color: gray;"
 							class="fa-brands fa-instagram"></i></a> <a href="#"><i
-							style="color: gray;" class="fa-brands fa-twitter"></i></a> <a
+							style="color: gray;" class="fa-brands fa-twitter"></i></a> 
 							href="#"><i style="color: gray;"
 							class="fa-brands fa-facebook"></i></a> <a href="#"><i
 							style="color: gray;" class="fa-brands fa-tumblr"></i></a>
 					</div>
 				</div>
 
-				<!-- Contact Info -->
 				<div class="col-md-3">
 					<h5 style="color: #2E2E2E">Locate us</h5>
 					<p style="color: #535353">28 Bartholomeo street, NY, NY</p>
@@ -430,7 +399,6 @@ document.addEventListener("DOMContentLoaded", function () {
 					<p style="color: #535353">Email: AZ@example.com</p>
 				</div>
 
-				<!-- Profile Links -->
 				<div class="col-md-3">
 					<h5 style="color: #2E2E2E">Profile</h5>
 					<ul class="profile-links"
@@ -448,14 +416,13 @@ document.addEventListener("DOMContentLoaded", function () {
 							style="text-decoration: none; color: #535353; margin-left: 10px;">Order
 								Tracking</a></li>
 						<li style="display: flex; align-items: center;"><i
-							style="color: gray;" class="fa-solid fa-map-marker-alt"></i> <a
+							style="color: gray;" class="fa-solid fa-map-marker-alt"></i> 
 							href="#"
 							style="text-decoration: none; color: #535353; margin-left: 10px;">Help
 								& Support</a></li>
 					</ul>
 				</div>
 
-				<!-- Subscribe -->
 				<div class="col-md-3">
 					<h5 style="color: #2E2E2E">Subscribe</h5>
 					<div class="subscribe">
@@ -475,9 +442,7 @@ document.addEventListener("DOMContentLoaded", function () {
 				style="color: #535353; font-weight: 400; font-size: 18px; margin-top: 20px;">©
 				Copyright 2020 by Mayad Ahmed. All rights reserved.</h1>
 		</div>
-
-
-	</footer> <!-- Bootstrap 5 JS --> 
+	</footer>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Footer Section End -->
 
@@ -502,15 +467,12 @@ document.addEventListener("DOMContentLoaded", function () {
 	<c:if test="${not empty order_success}">
     <script type="text/javascript">
         alertUser('Success!', ' 🎉 Đặt hàng thành công! Cảm ơn bạn đã mua hàng. !', 'success');
-        
-        // Xóa giỏ hàng sau khi đặt hàng thành công
         setTimeout(function() {
             location.assign("http://localhost:8080/shop/cart");
-        }, 2000); // Chuyển hướng sau 2 giây để người dùng thấy thông báo
+        }, 2000);
     </script>
 </c:if>
 
-	<!-- Js Plugins -->
 	<script src="<c:url value="/assets/js/jquery-3.3.1.min.js" />"></script>
 	<script src="<c:url value="/assets/js/bootstrap.min.js"/> "></script>
 	<script src="<c:url value="/assets/js/jquery.nice-select.min.js"/>"></script>
@@ -520,5 +482,23 @@ document.addEventListener("DOMContentLoaded", function () {
 	<script src="<c:url value="/assets/js/mixitup.min.js"/> "></script>
 	<script src="<c:url value="/assets/js/owl.carousel.min.js"/> "></script>
 	<script src="<c:url value="/assets/js/main.js"/> "></script>
+
+    <div class="modal fade" id="loginRequiredModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Yêu cầu đăng nhập</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        Bạn cần đăng nhập trước khi đặt hàng.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+        <button type="button" class="btn btn-primary" onclick="location.assign('/sign-in')">Đăng nhập ngay</button>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 </html>

@@ -17,17 +17,19 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "Carts")
 public class Cart {
-	@EmbeddedId
-	private CartKey id;
-	
-	@ManyToOne
-    @MapsId("username")
-	@JoinColumn(name = "username")
-	private Account accountCart;
-	
-	@ManyToOne
+    @EmbeddedId
+    private CartKey id;
+
+    // ĐÃ ĐỔI: MapsId từ "username" -> "accountId", JoinColumn từ "username" -> "AccountId"
+    @ManyToOne
+    @MapsId("accountId")
+    @JoinColumn(name = "AccountId")
+    private Account accountCart;
+
+    @ManyToOne
     @MapsId("productId")
-	@JoinColumn(name = "productId")
-	private Product productCart;
-	private int quantity;
+    @JoinColumn(name = "ProductId")
+    private Product productCart;
+
+    private int quantity;
 }

@@ -700,14 +700,10 @@ document.addEventListener("DOMContentLoaded", function () {
 	    	location.assign("http://localhost:8080/shop/detail/"+id);
 		}
 
-	    async function addToCartOne(id) {
-	    	if(${not empty user}){
-	    	  const response = await fetch("http://localhost:8080/shop/cart/add?id="+id+"&qty=1");
-			}
-		    else {
-	    	  location.assign("http://localhost:8080/sign-in");
-			}
-	    }
+	  async function addToCartOne(id) {
+    await fetch("http://localhost:8080/shop/cart/add?id=" + id + "&qty=1");
+    location.assign("http://localhost:8080/shop/cart");
+}
     </script>
 
 	<!-- Js Plugins -->

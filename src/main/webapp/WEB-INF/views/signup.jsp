@@ -8,10 +8,51 @@
 <head>
 <meta charset="utf-8">
 <title>Đăng ký tài khoản</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <link href="/assets/css/plugins.bundle.css" rel="stylesheet" type="text/css" />
 <link href="/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<style>
+    body{
+        font-family: 'Nunito Sans', sans-serif;
+    }
+
+    input,
+    button,
+    textarea,
+    select,
+    label,
+    .form-control,
+    .btn,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6{
+        font-family: 'Nunito Sans', sans-serif !important;
+    }
+
+    .input-group .form-control{
+        border-right: 0;
+    }
+
+    .input-group-text{
+        background: #fff;
+        border-left: 0;
+        cursor: pointer;
+    }
+
+    .input-group-text i{
+        color: #6c757d;
+        font-size: 18px;
+        transition: .2s;
+    }
+
+    .input-group-text:hover i{
+        color: #0d6efd;
+    }
+</style>
 </head>
 <body>
     <div class="d-flex flex-column flex-root">
@@ -65,22 +106,49 @@
 <!--                         </div> -->
 
                         <!-- Mật khẩu -->
-                        <div class="mb-10 fv-row">
-                            <label class="form-label fw-bolder text-dark fs-6">Mật khẩu</label>
-                            <form:input path="password" class="form-control form-control-lg form-control-solid" type="password" />
-                            <form:errors path="password" class="form-text text-danger" />
-                        </div>
+                      <div class="mb-10 fv-row">
+    <label class="form-label fw-bolder text-dark fs-6">Mật khẩu</label>
+
+    <div class="input-group">
+        <form:password
+            path="password"
+            id="password"
+            class="form-control form-control-lg form-control-solid" />
+
+        <span class="input-group-text" style="cursor:pointer;"
+              onclick="togglePassword('password','eyePassword')">
+            <i id="eyePassword" class="fa-solid fa-eye"></i>
+        </span>
+    </div>
+
+    <form:errors path="password" class="form-text text-danger" />
+</div>
                         <!-- Xác nhận lại mật khẩu -->
 						<!-- Xác nhận lại mật khẩu -->
 <div class="mb-10 fv-row">
-    <label class="form-label fw-bolder text-dark fs-6">Xác nhận mật khẩu</label>
-    <input name="confirm" class="form-control form-control-lg form-control-solid" type="password" />
-    <c:if test="${not empty error_signup_confirm}">
-        <div class="form-text text-danger">${error_signup_confirm}</div>
-    </c:if>
-</div>
+    <label class="form-label fw-bolder text-dark fs-6">
+        Xác nhận mật khẩu
+    </label>
 
-						                        
+    <div class="input-group">
+        <input
+            id="confirmPassword"
+            name="confirm"
+            class="form-control form-control-lg form-control-solid"
+            type="password" />
+
+        <span class="input-group-text" style="cursor:pointer;"
+              onclick="togglePassword('confirmPassword','eyeConfirm')">
+            <i id="eyeConfirm" class="fa-solid fa-eye"></i>
+        </span>
+    </div>
+
+    <c:if test="${not empty error_signup_confirm}">
+        <div class="form-text text-danger">
+            ${error_signup_confirm}
+        </div>
+    </c:if>
+</div>		                        
 
                         <!-- Nút Đăng ký -->
                         <div class="text-center">
@@ -93,5 +161,23 @@
             </div>
         </div>
     </div>
+    <script>
+function togglePassword(inputId, eyeId) {
+
+    const input = document.getElementById(inputId);
+    const eye = document.getElementById(eyeId);
+
+    if (input.type === "password") {
+        input.type = "text";
+        eye.classList.remove("fa-eye");
+        eye.classList.add("fa-eye-slash");
+    } else {
+        input.type = "password";
+        eye.classList.remove("fa-eye-slash");
+        eye.classList.add("fa-eye");
+    }
+}
+
+</script>
 </body>
 </html>

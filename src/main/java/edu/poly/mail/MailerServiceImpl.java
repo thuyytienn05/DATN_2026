@@ -17,13 +17,19 @@ import edu.poly.model.MailInfo;
 @Service
 public class MailerServiceImpl implements MailerService {
 
-    @Autowired
+    @Autowired(required = false)   // ← Sửa ở đây
     private JavaMailSender sender;
 
     private List<MailInfo> list = new ArrayList<>();
 
     @Override
     public void send(MailInfo mail) throws MessagingException {
+        // Kiểm tra nếu mail sender chưa được config thì bỏ qua
+        if (sender == null) {
+            System.out.println("⚠️ Mail sender is not configured. Skipping email send to: " + mail.getTo());
+            return;
+        }
+
         MimeMessage message = sender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");
 

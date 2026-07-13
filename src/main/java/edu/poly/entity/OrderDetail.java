@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "OrderDetails")
+@Table(name = "Order_Details")
 public class OrderDetail implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
